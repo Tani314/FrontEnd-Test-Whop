@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useContext, useReducer } from 'react';
+import CreateList from './components/CreateList';
+import Lists from './components/Lists';
+import EditList from './components/EditList';
+import ListsContext from './context';
+import reducers from './reducer';
+import Home from './components/Home'
 function App() {
+  const initialState = useContext(ListsContext);
+  const [state, dispatch] = useReducer(reducers, initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ListsContext.Provider value={{ state, dispatch }}>
+
+      {state.currentTitle === null?
+      <div>
+        <Home/>
+      </div>
+     : (
+        <EditList />
+      )}
+    </ListsContext.Provider>
   );
 }
 
