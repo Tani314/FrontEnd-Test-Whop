@@ -1,6 +1,4 @@
 import React, { useContext, useReducer } from 'react';
-import CreateList from './components/CreateList';
-import Lists from './components/Lists';
 import EditList from './components/EditList';
 import ListsContext from './context';
 import reducers from './reducer';
@@ -11,7 +9,6 @@ function App() {
 
   return (
     <ListsContext.Provider value={{ state, dispatch }}>
-
       {state.currentTitle === null?
       <div>
         <Home/>

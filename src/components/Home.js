@@ -4,13 +4,13 @@ import avatar from '../assets/avatar.png';
 import Lists from './Lists'
 import ListsContext from '../context';
 import CreateList from './CreateList';
+import {AiOutlinePlus} from 'react-icons/ai'
 
 export default function Home() {
     const { state } = useContext(ListsContext);
     const [showComponent, setShowComponent] = useState(false)
      
     const show = () => {
-        console.log(showComponent)
         if(showComponent===false){
             setShowComponent(true)
         }else{
@@ -23,13 +23,13 @@ export default function Home() {
     {!showComponent  ?
         (<div>
             <img src={avatar} alt="avatar" />
-            <h1>List</h1>
+            <h1>Lists</h1>
             <img src={vector} alt='vector' onClick={show}/>
             {state.titles.length ?
              <Lists /> :
                 <div>
                     <h2>Create a list</h2>
-                    <button onClick={show}>+</button>
+                    <AiOutlinePlus onClick={show}/>
                 </div>
             }
         </div>)

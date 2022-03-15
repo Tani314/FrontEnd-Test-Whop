@@ -1,13 +1,12 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import ListsContext from '../context';
-import Home from './Home'
+import Home from './Home';
+import {FaAngleLeft} from 'react-icons/fa';
 
 export default function CreateList({show}) {
   const { state, dispatch } = useContext(ListsContext);
   const [value, setValue] = useState('');
   const [showChange,setShowChange]= useState(true);
-
-console.log('STATE',state)
   let ref = useRef();
 
   useEffect(() => {
@@ -33,12 +32,13 @@ console.log('STATE',state)
     setShowChange(false);
     show();
 }
+
   return (
     <div>
       { showChange ?
       <form onSubmit={handleSubmit} action=''>
         <input type='text' ref={ref} onChange={handleChange} value={value} placeholder="List Item" />
-        <button onClick={handleCancel}>Cancel</button>
+        <button onClick={handleCancel}><FaAngleLeft/>Cancel </button>
         <button>Done</button>
       </form>
       :
